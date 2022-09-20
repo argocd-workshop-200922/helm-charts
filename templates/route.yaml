@@ -11,4 +11,7 @@ spec:
     kind: Service
     name: {{ template "app.name" }}
     weight: 100
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge  
   wildcardPolicy: None

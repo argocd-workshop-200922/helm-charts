@@ -55,16 +55,9 @@ spec:
             - containerPort: 5432
               protocol: TCP
           imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - mountPath: /var/lib/pgsql/data
-              name: {{ .Values.db.name | default "gitea-db" | quote }}
           image: ' '
       dnsPolicy: ClusterFirst
       restartPolicy: Always
-      volumes:
-        - name: {{ .Values.db.name | default "gitea-db" | quote }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.db.name | default "gitea-db" | quote }}
   triggers:
     - imageChangeParams:
         automatic: true

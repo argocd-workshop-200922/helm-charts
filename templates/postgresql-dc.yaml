@@ -55,18 +55,8 @@ spec:
             - containerPort: 5432
               protocol: TCP
           imagePullPolicy: IfNotPresent
-          image: ' '
+          image: image-registry.openshift-image-registry.svc:5000/openshift/postgresql:latest
       dnsPolicy: ClusterFirst
       restartPolicy: Always
   triggers:
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - postgresql
-        from:
-          kind: ImageStreamTag
-          name: '{{ .Values.db.imagestream_name | default "postgresql" }}:{{ .Values.db.imagestream_tag | default "latest" }}'
-          namespace: {{ .Values.db.imagestream_namespace | default "openshift" }}
-        lastTriggeredImage: ''
-      type: ImageChange
     - type: ConfigChange
